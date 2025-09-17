@@ -44,18 +44,7 @@ export const updateTiquetera = async (req, res) => {
     try {
         const updateTiquetera = new UpdateTiquetera(tiqueteraRepository);
 
-        const { nrotiquetera, cliente, saldo } = req.body
-
-        let valorTotalTransacciones = req.body.totalTransacciones
-        valorTotalTransacciones++
-
-        const totalTransacciones = valorTotalTransacciones
-
-        const data = { nrotiquetera, cliente, saldo,  totalTransacciones}
-
-        console.log(data)
-
-        const tiqueteraActualizada = await updateTiquetera.execute(req.params.id, data);
+        const tiqueteraActualizada = await updateTiquetera.execute(req.params.id, req.body);
 
 
         if (!tiqueteraActualizada) {

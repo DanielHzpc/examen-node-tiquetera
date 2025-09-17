@@ -8,6 +8,7 @@ const TiqueteraSchema = new mongoose.Schema({
   });
 
 const TiqueteraModel = mongoose.model("Tiquetera", TiqueteraSchema);
+let totalTransacciones = 0
 
 class TiqueteraRepositoryMongo {
 
@@ -25,7 +26,11 @@ class TiqueteraRepositoryMongo {
   }
 
   async update(id, tiqueteraData) {
-      return await TiqueteraModel.findByIdAndUpdate(id, tiqueteraData, { new: true });
+    const {nrotiquetera, cliente, saldo} = tiqueteraData
+    totalTransacciones++
+
+    const data = { nrotiquetera, cliente, saldo, totalTransacciones }
+    return await TiqueteraModel.findByIdAndUpdate(id, data, { new: true });
   }
 
   async delete(id) {
