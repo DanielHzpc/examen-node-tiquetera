@@ -52,8 +52,6 @@ export const updateTiquetera = async (req, res) => {
             return res.status(404).json({ error: "Tiquetera no encontrada" });
         }
 
-
-
         // Si se actualizó correctamente, respondemos con el objeto actualizado
         res.status(200).json(tiqueteraActualizada);
     } catch (err) {
