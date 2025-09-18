@@ -28,23 +28,19 @@ class TiqueteraRepositoryMongo {
   async update(id, tiqueteraData) {
     const { nrotiquetera, cliente, saldo ,observaciones} = tiqueteraData;
 
-    // Buscamos el documento por su ID
     const tiquetera = await TiqueteraModel.findById(id);
     
     if (!tiquetera) {
       throw new Error('Tiquetera no encontrada');
     }
 
-    // Aumentamos el campo totalTransacciones en 1
     tiquetera.totalTransacciones += 1;
 
-    // Actualizamos el resto de los campos (nrotiquetera, cliente, saldo)
     tiquetera.nrotiquetera = nrotiquetera;
     tiquetera.cliente = cliente;
     tiquetera.saldo = saldo;
     tiquetera.observaciones = observaciones
 
-    // Guardamos los cambios en la base de datos
     return await tiquetera.save();
   }
 
