@@ -34,7 +34,7 @@ class TiqueteraRepositoryMongo {
       throw new Error('Tiquetera no encontrada');
     }
 
-    tiquetera.totalTransacciones += 1;
+    tiquetera.totalTransacciones = (tiquetera.totalTransacciones || 0) + 1;;
 
     tiquetera.nrotiquetera = nrotiquetera;
     tiquetera.cliente = cliente;
